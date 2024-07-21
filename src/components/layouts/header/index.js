@@ -1,0 +1,106 @@
+import Link from "next/link";
+import Head from "next/head";
+import { isEmpty } from "lodash";
+import { useState } from "react";
+
+import { BurgerIcon, TailwindIcon, Bag, User, Wishlist } from "../../icons";
+
+const Header = ({ header }) => {
+  console.warn(header);
+
+  const { headerMenuItems, siteDescription, siteLogoUrl, siteTitle, favicon } =
+    header || {};
+
+  const [isMenuVisible, setIsMenuVisibility] = useState(false);
+
+  return (
+    <>
+      <Head>
+        <title>{siteTitle}</title>
+        <link rel="icon" href={favicon} />
+      </Head>
+      <div className="header">
+        <nav className="bg-white p-4">
+          <div className="flex items-center justify-between flex-wrap container mx-auto">
+            <div className="flex items-center flex-shrink-0 text-black mr-20">
+              {siteLogoUrl ? (
+                <img src={siteLogoUrl} alt={siteTitle} />
+              ) : (
+                <TailwindIcon />
+              )}
+
+              <span className="font-semibold text-xl tracking-tight">
+                <a className href="/">
+                  WooNext
+                </a>
+              </span>
+            </div>
+            <div className="block lg:hidden">
+              <button
+                className="flex items-center px-3 py-2 border rounded text-black border-black hover:text-black hover:border-black"
+                onClick={() => setIsMenuVisibility(!isMenuVisible)}
+              >
+                <BurgerIcon className="fill-current h-3 w-3" />
+              </button>
+            </div>
+            <div
+              className={`${
+                isMenuVisible ? "max-h-full" : "h-0"
+              } overflow-hidden w-full lg:h-full block flex-grow lg:flex lg:items-center lg:w-auto`}
+            >
+              <div className="text-sm font-medium uppercase lg:flex-grow">
+                {!isEmpty(headerMenuItems) && headerMenuItems.length
+                  ? headerMenuItems.map((menuItem) => (
+                      <Link href={menuItem.url} key={menuItem.ID}>
+                        <a
+                          className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
+                          dangerouslySetInnerHTML={{ __html: menuItem.title }}
+                        />
+                      </Link>
+                    ))
+                  : null}
+                <a
+                  className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
+                  href="/categories/"
+                >
+                  Categories
+                </a>
+              </div>
+              <div className="text-sm font-medium">
+                <a
+                  href="#responsive-header"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
+                >
+                  <span className="flex flex-row items-center lg:flex-col">
+                    <User className="mr-1 lg:mr-0" />
+                    Profile
+                  </span>
+                </a>
+                <a
+                  href="#responsive-header"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
+                >
+                  <span className="flex flex-row items-center lg:flex-col">
+                    <Wishlist className="mr-1 lg:mr-0" />
+                    Wishlist
+                  </span>
+                </a>
+                <a
+                  className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
+                  href="/cart/"
+                >
+                  <span className="flex flex-row items-center lg:flex-col">
+                    <Bag className="mr-1 lg:mr-0" />
+                    Bag
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </>
+  );
+};
+
+export default Header;
