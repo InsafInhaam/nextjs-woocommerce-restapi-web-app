@@ -57,6 +57,7 @@ export const viewCart = (setCart) => {
     .get(CART_ENDPOINT, addOrViewCartConfig)
     .then((res) => {
       const formattedCartData = getFormattedCartData(res?.data ?? []);
+      setCart(formattedCartData);
     })
     .catch((err) => {
       console.log("err", err);
@@ -73,9 +74,7 @@ const getFormattedCartData = (cartData) => {
   if (!cartData.length) {
     return null;
   }
-
   const cartTotal = calculateCartQtyAndPrice(cartData || []);
-
   return {
     cartItems: cartData || [],
     ...cartTotal,
@@ -98,7 +97,7 @@ const calculateCartQtyAndPrice = (cartItems) => {
     return qtyAndPrice;
   }
 
-  cartItems.forEach((items, index) => {
+  cartItems.forEach((item, index) => {
     qtyAndPrice.totalQty += item?.quantity ?? 0;
     qtyAndPrice.totalPrice += item?.line_total ?? 0;
   });

@@ -23,29 +23,22 @@ const AddToCart = ({ product }) => {
 
   return (
     <>
+      <button
+        className={addToCartBtnClasses}
+        onClick={() =>
+          addToCart(product?.id ?? 0, 1, setCart, setIsAddedToCart, setLoading)
+        }
+        disabled={loading}
+      >
+        {loading ? "Adding..." : "Add to cart"}
+      </button>
       {isAddedToCart && !loading ? (
         <Link href="/cart">
           <a className="bg-white hover:bg-gray-100 text-gray-800 font-semibold ml-4 py-11px px-4 border border-gray-400 rounded shadow">
-            View Cart
+            View cart
           </a>
         </Link>
-      ) : (
-        <button
-          className={addToCartBtnClasses}
-          onClick={() =>
-            addToCart(
-              product?.id ?? 0,
-              1,
-              setCart,
-              setIsAddedToCart,
-              setLoading
-            )
-          }
-          disabled={loading}
-        >
-          Add to Cart
-        </button>
-      )}
+      ) : null}
     </>
   );
 };
