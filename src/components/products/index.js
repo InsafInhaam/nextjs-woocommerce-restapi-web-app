@@ -6,6 +6,10 @@ const Products = ({ products }) => {
 		return null;
 	}
 
+    // Filter out placeholder products
+    const filteredProducts = products.filter(product => product.name && !product.name.startsWith('Import placeholder'));
+
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -13,8 +17,8 @@ const Products = ({ products }) => {
           Customers also purchased
         </h2>
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {products?.length
-            ? products?.map((product) => {
+          {filteredProducts?.length
+            ? filteredProducts?.map((product) => {
                 return (
                   <Product product={product} key={product?.id}/>
                 );

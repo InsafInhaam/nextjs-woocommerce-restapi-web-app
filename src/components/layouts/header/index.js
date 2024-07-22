@@ -1,12 +1,15 @@
 import Link from "next/link";
 import Head from "next/head";
 import { isEmpty } from "lodash";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { BurgerIcon, TailwindIcon, Bag, User, Wishlist } from "../../icons";
+import { AppContext } from "../../context";
 
 const Header = ({ header }) => {
   console.warn(header);
+
+  const [cart, setCart] = useContext(AppContext);
 
   const { headerMenuItems, siteDescription, siteLogoUrl, siteTitle, favicon } =
     header || {};
@@ -85,15 +88,16 @@ const Header = ({ header }) => {
                     Wishlist
                   </span>
                 </a>
-                <a
-                  className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10"
-                  href="/cart/"
-                >
-                  <span className="flex flex-row items-center lg:flex-col">
-                    <Bag className="mr-1 lg:mr-0" />
-                    Bag
-                  </span>
-                </a>
+                <Link href="/cart/">
+                  <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10">
+                    <span className="flex flex-row items-center lg:flex-col">
+                      <Bag className="mr-1 lg:mr-0" />
+                      <span className="ml-1">
+                        Bag {cart?.totalQty ? `(${cart?.totalQty})` : null}
+                      </span>
+                    </span>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ const Product = ({ product }) => {
               altText={product?.name ?? ""}
               title={product?.name ?? ""}
               className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-              width="280"
+              width="240"
               height="320"
               priority
             />
