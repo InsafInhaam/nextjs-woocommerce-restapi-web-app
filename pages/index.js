@@ -4,19 +4,16 @@ import axios from "axios";
 import Products from "../src/components/products";
 import { GET_PRODUCTS, HEADER_FOOTER_ENDPOINT } from "../src/utils/constants/endpoints";
 import { getProductsData } from "../src/utils/products";
+import Layout from "../src/components/layouts";
 
 export default function Home({ headerFooter, products }) {
   //   console.log(data);
-  const { header, footer } = headerFooter || {};
+  // const { header, footer } = headerFooter || {};
 
   return (
-    <>
-      <Header header={header} />
-      <main className="container mx-auto py-4">
-        <Products products={products} />
-      </main>
-      <Footer footer={footer} />
-    </>
+    <Layout headerFooter={headerFooter || {}}>
+			<Products products={products}/>
+		</Layout>
   );
 }
 

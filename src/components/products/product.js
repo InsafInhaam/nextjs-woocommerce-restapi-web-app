@@ -26,21 +26,21 @@ const Product = ({ product }) => {
               priority
             />
           </div>
-          <div className="mt-4 flex justify-between">
-            <div>
-              <h3 className="text-sm text-gray-700">
-                <span aria-hidden="true" className="absolute inset-0" />
-                {product?.name ?? ""}
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">Black</p>
-            </div>
-            <p className="text-sm font-medium text-gray-900">
-              {/* <div dangerouslySetInnerHTML={{ __html: sanitize( product?.price_html ?? '' ) }}/> */}
-              {product?.price ? `$${product?.price}` : "Price not available"}
-            </p>
-          </div>
         </a>
       </Link>
+      <div className="mt-4 flex justify-between">
+        <div>
+          <h3 className="text-sm text-gray-700">
+            <span aria-hidden="true" className="" />
+            {product?.name ?? ""}
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">Black</p>
+        </div>
+        <p className="text-sm font-medium text-gray-900">
+          {/* <div dangerouslySetInnerHTML={{ __html: sanitize( product?.price_html ?? '' ) }}/> */}
+          {product?.price ? `$${product?.price}` : "Price not available"}
+        </p>
+      </div>
 
       {"simple" === productType ? <AddToCart product={product} /> : null}
     </div>
