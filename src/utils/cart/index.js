@@ -102,7 +102,7 @@ export const updateCart = (cartKey, qty = 1, setCart, setUpdatingProduct) => {
  * @param {Function} setCart SetCart Function.
  * @param {Function} setRemovingProduct Set Removing Product Function.
  */
-export const deleteCartItems = (cartKey, setCart, setRemovingProduct) => {
+export const deleteCartItem = (cartKey, setCart, setRemovingProduct) => {
   const addOrViewCartConfig = getApiCartConfig();
 
   setRemovingProduct(true);
