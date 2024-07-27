@@ -1,8 +1,6 @@
-import Footer from "../src/components/layouts/footer";
-import Header from "../src/components/layouts/header";
 import axios from "axios";
 import Products from "../src/components/products";
-import { GET_PRODUCTS, HEADER_FOOTER_ENDPOINT } from "../src/utils/constants/endpoints";
+import { HEADER_FOOTER_ENDPOINT } from "../src/utils/constants/endpoints";
 import { getProductsData } from "../src/utils/products";
 import Layout from "../src/components/layouts";
 
