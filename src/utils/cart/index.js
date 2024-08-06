@@ -108,7 +108,7 @@ export const deleteCartItem = (cartKey, setCart, setRemovingProduct) => {
   setRemovingProduct(true);
 
   axios
-    .delete(`${CART_ENDPOINT}${cartKey}`, addOrViewCartConfig)
+      .delete(`${CART_ENDPOINT}${cartKey}`, addOrViewCartConfig)
     .then((res) => {
       viewCart(setCart, setRemovingProduct);
     })
